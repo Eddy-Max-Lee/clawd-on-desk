@@ -28,6 +28,10 @@ function getSessionFocusTarget(entry) {
     return { canFocus: true, type: "codex-thread", url: codexThreadUrl };
   }
 
+  if (entry.cwd && /^https?:\/\//.test(entry.cwd)) {
+    return { canFocus: true, type: "browser-tab", url: entry.cwd };
+  }
+
   if (entry.sourcePid) {
     return { canFocus: true, type: "terminal", url: null };
   }

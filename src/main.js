@@ -1083,6 +1083,19 @@ function focusDashboardSession(sessionId, options = {}) {
     return;
   }
 
+  if (focusTarget.type === "browser-tab" && focusTarget.url) {
+    focusCodexThreadTarget({
+      shell,
+      focusEntry,
+      sessionId: id,
+      requestSource,
+      url: focusTarget.url,
+      focusLog,
+      focusTerminalSession,
+    });
+    return;
+  }
+
   if (focusTarget.type === "terminal") {
     focusTerminalSession(focusEntry, id, requestSource);
     return;

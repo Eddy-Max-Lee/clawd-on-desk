@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Clawd Web AI Bridge",
+  "version": "0.1.0",
+  "description": "Detects ChatGPT and Gemini activity and notifies clawd-on-desk",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "http://127.0.0.1:23333/*",
+    "http://127.0.0.1:23334/*",
+    "http://127.0.0.1:23335/*",
+    "http://127.0.0.1:23336/*",
+    "http://127.0.0.1:23337/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content/shared.js", "content/chatgpt.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["content/shared.js", "content/gemini.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
